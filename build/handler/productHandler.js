@@ -10,16 +10,22 @@ const productRoutes = (app) => {
     app.post("/products/", authenticate_1.isAuthenticated, create);
 };
 const index = async (_req, res) => {
-    const products = await model.index();
-    res.json(products);
+    try {
+        const products = await model.index();
+        res.json(products);
+    }
+    catch (err) {
+        res.json(err);
+    }
 };
 const show = async (req, res) => {
-    const product = await model.show(parseInt(req.params.id));
-    product
-        ? res.json(product)
-        : res
-            .status(404)
-            .json(`No existed product found with id: ${req.params.id}`);
+    try {
+        const product = await model.show(parseInt(req.params.id));
+        res.json(product);
+    }
+    catch (err) {
+        res.json(`No existed product found with id: ${req.params.id}. Error: ${err}`);
+    }
 };
 const showByCat = async (req, res) => {
     const products = await model.showByCat(req.params.category);
@@ -33,8 +39,7 @@ const create = async (req, res) => {
     };
     try {
         const newProduct = await model.create(product);
-        res.status(201);
-        res.json(newProduct);
+        res.status(201).json(newProduct);
     }
     catch (err) {
         res.status(400);

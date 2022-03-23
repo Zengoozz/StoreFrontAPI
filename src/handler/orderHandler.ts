@@ -15,16 +15,24 @@ const index = async (
   _req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const orders = await model.index();
-  res.json(orders);
+  try {
+    const orders = await model.index();
+    res.json(orders);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const show = async (
   req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const orders = await model.show(parseInt(req.params.id));
-  res.json(orders);
+  try {
+    const orders = await model.show(parseInt(req.params.id));
+    res.json(orders);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const create = async (
@@ -32,8 +40,11 @@ const create = async (
   res: express.Response
 ): Promise<void> => {
   try {
-    const newOrder = await model.create(req.body.status, Number(req.params.user_id));
-    res.json(newOrder);
+    const newOrder = await model.create(
+      req.body.status,
+      Number(req.params.user_id)
+    );
+    res.status(201).json(newOrder);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -49,12 +60,10 @@ const addProduct = async (
       parseInt(req.params.id),
       req.body.quantity
     );
-    res.json(addedProduct);
+    res.status(201).json(addedProduct);
   } catch (err) {
     res.status(400).json(err);
   }
 };
-
-
 
 export default orderRoutes;

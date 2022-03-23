@@ -13,12 +13,22 @@ const userRoutes = (app) => {
     app.post("/users/", create);
 };
 const index = async (_req, res) => {
-    const users = await model.index();
-    res.json(users);
+    try {
+        const users = await model.index();
+        res.json(users);
+    }
+    catch (err) {
+        res.json(err);
+    }
 };
 const show = async (req, res) => {
-    const user = await model.show(parseInt(req.params.id));
-    res.json(user);
+    try {
+        const user = await model.show(parseInt(req.params.id));
+        res.json(user);
+    }
+    catch (err) {
+        res.json(err);
+    }
 };
 const create = async (req, res) => {
     const user = {

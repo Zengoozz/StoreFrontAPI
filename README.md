@@ -15,6 +15,9 @@ Your application must make use of the following libraries:
 
 ## Steps to setup and connect database
 
+### Default database port:
+**5432**
+
 ### Initializing database schema:
 
 **Should run following lines in terminal**

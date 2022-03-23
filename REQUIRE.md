@@ -1,22 +1,22 @@
 
 ## API Endpoints
 #### Products
-- Index >> ("/Products/")
-- Show >> ("/Products/:id")
-- Create [token required] >> ("/Products/")
-- Products by category (args: product category) >> ("/Products/category/:category")
+- Index >> ("/Products/") [GET REQUEST]
+- Show >> ("/Products/:id") [GET REQUEST]
+- Create [token required] >> ("/Products/") [POST REQUEST]
+- Products by category (args: product category) >> ("/Products/category/:category") [GET REQUEST]
 
 #### Users
-- Index [token required] >> ("/users/")
-- Show [token required] >> ("/users/:id")
-- Create >> ("/users/")
+- Index [token required] >> ("/users/") [GET REQUEST]
+- Show [token required] >> ("/users/:id") [GET REQUEST]
+- Create >> ("/users/") [POST REQUEST]
 
 #### Orders
-- Index [token required] >> ("/orders/")
-- Show [token required] >> ("/orders/:id")
-- Create N[token required] >> ("/orders/:user_id")
-- AddProduct [token required] >> ("/orders/:id/products/")
-- Current Order by user (args: user id)[token required] >> ("/currentOrder/:user_id")
+- Index [token required] >> ("/orders/") [GET REQUEST]
+- Show [token required] >> ("/orders/:id") [GET REQUEST]
+- Create N[token required] >> ("/orders/:user_id") [POST REQUEST]
+- AddProduct [token required] >> ("/orders/:id/products/") [POST REQUEST]
+- Current Order by user (args: user id)[token required] >> ("/currentOrder/:user_id") [GET REQUEST]
 
 ## Data Shapes
 #### Product

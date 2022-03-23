@@ -7,7 +7,12 @@ const dashboardRoutes = (app) => {
     app.get("/currentOrder/:user_id", authenticate_1.isAuthenticated, currentOrderByUser);
 };
 const currentOrderByUser = async (req, res) => {
-    const order = await model.currentOrderByUser(Number(req.params.user_id));
-    res.json(order);
+    try {
+        const order = await model.currentOrderByUser(Number(req.params.user_id));
+        res.json(order);
+    }
+    catch (err) {
+        res.json(err);
+    }
 };
 exports.default = dashboardRoutes;

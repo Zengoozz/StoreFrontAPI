@@ -12,8 +12,12 @@ const currentOrderByUser = async (
   req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const order = await model.currentOrderByUser(Number(req.params.user_id));
-  res.json(order);
+  try {
+    const order = await model.currentOrderByUser(Number(req.params.user_id));
+    res.json(order);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 export default dashboardRoutes;

@@ -6,25 +6,33 @@ import { User, UserModel } from "../model/userModel";
 const model = new UserModel();
 
 const userRoutes = (app: express.Application): void => {
-  app.get("/users/",isAuthenticated, index);
-  app.get("/users/:id",isAuthenticated, show);
-  app.post("/users/",create);
+  app.get("/users/", isAuthenticated, index);
+  app.get("/users/:id", isAuthenticated, show);
+  app.post("/users/", create);
 };
 
 const index = async (
   _req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const users = await model.index();
-  res.json(users);
+  try {
+    const users = await model.index();
+    res.json(users);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const show = async (
   req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const user = await model.show(parseInt(req.params.id));
-  res.json(user);
+  try {
+    const user = await model.show(parseInt(req.params.id));
+    res.json(user);
+  } catch (err) {
+    res.json(err);
+  }
 };
 
 const create = async (

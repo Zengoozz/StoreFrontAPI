@@ -13,12 +13,16 @@ describe("EndPoints", () => {
         const response = await request.get("/");
         expect(response.status).toEqual(300);
     });
-    it("Product endpoint response status", async () => {
+    it("Product/index endpoint response status", async () => {
         const response = await request.get("/products/");
         expect(response.status).toEqual(200);
     });
-    it("Products by Category endpoint response status", async () => {
-        const response = await request.get("/Products/category/1");
+    it("Product/show endpoint response status", async () => {
+        const response = await request.get("/products/1");
+        expect(response.status).toEqual(200);
+    });
+    it("Products/showByCategory endpoint response status", async () => {
+        const response = await request.get("/Products/category/cag1");
         expect(response.status).toEqual(200);
     });
     it("User endpoint response status for Unauthenticated access", async () => {
